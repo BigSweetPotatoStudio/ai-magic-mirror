@@ -35,4 +35,5 @@ jobs:
           script: |
             export NODE_ENV=production 
             cd projects/ai-magic-mirror/nodejs
+            git pull
             npm run deploy
