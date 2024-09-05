@@ -1,0 +1,14 @@
+node_modules/
+output/
+tmp/
+package-lock.json
+out.mp4
+out.srt
+out2.mp4
+.env
+log/
+package-lock.json
+dist/
+.DS_Store
+js/
+uploads/

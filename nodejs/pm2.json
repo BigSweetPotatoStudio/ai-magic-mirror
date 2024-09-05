@@ -1,0 +1,9 @@
+{
+  "name": "ndoejs",
+  "script": "./js/server.js",
+  "cwd": "./",
+  "exec_mode": "fork",
+  "autorestart": true,
+  "args": [],
+  "env": {}
+}

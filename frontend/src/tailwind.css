@@ -1,0 +1,37 @@
+@layer tailwind-base, antd;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .scale-btn {
+    @apply transition-transform hover:scale-105;
+  }
+
+  .d3-btn {
+    @apply relative cursor-pointer rounded shadow-md transition-shadow duration-300 ease-linear hover:shadow-[0_5px_10px_rgba(0,0,0,0.6)];
+    overflow: hidden;
+  }
+
+  .d3-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgb(129 183 199 / 70%),
+      transparent
+    );
+    transition: all 0.5s;
+  }
+  .d3-btn:hover::before {
+    left: 100%;
+  }
+}
