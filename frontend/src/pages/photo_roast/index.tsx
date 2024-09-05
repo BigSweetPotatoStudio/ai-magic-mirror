@@ -52,7 +52,10 @@ export const SelfieCommentGenerator = () => {
       imageFile = file;
       const reader = new FileReader();
       reader.onload = (e) => {
+        setType(0);
+        session_id = null;
         setImage(e.target.result);
+        setResult({ positive: "", negative: "" });
       };
       reader.readAsDataURL(file);
     }
@@ -114,7 +117,7 @@ export const SelfieCommentGenerator = () => {
   };
 
   return (
-    <div className="mx-auto max-w-md overflow-hidden rounded-lg bg-white shadow-lg">
+    <div className="mx-auto w-full overflow-hidden rounded-lg bg-white">
       <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-6 text-white">
         <h1 className="text-center text-3xl font-bold">AI 自拍评论器</h1>
         <p className="mt-2 text-center text-purple-100">
@@ -137,10 +140,14 @@ export const SelfieCommentGenerator = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       setImage(null);
+                      setType(0);
+                      imageFile = null;
+                      session_id = null;
+                      setResult({ positive: "", negative: "" });
                     }}
                     className="absolute right-2 top-2 bg-white text-purple-500 hover:bg-gray-100"
                   >
-                    <Upload className="rotate-180" size={20} />
+                    <Upload size={20} />
                   </button>
                 </>
               ) : (
