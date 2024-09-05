@@ -1,1 +1,3 @@
-export type ApiService = any;
+export class ApiService {
+  [key: string]: any;
+}

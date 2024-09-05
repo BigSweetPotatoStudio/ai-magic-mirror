@@ -1,5 +1,5 @@
 import { request } from "./request.js";
-import { ApiService } from "../../../nodejs/src/router/api_service.js";
+import type { ApiService } from "../../../nodejs/src/router/api_service.js";
 
 type FirstParameter<T extends (...args: any[]) => any> = T extends (
   first: infer F,
