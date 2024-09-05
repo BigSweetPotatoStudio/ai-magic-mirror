@@ -5,8 +5,9 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const Dotenv = require("dotenv-webpack");
-
+require("dotenv").config();
+// const Dotenv = require("dotenv-webpack");
+console.log(process.env);
 module.exports = (env, argv) => {
   console.log("ENV:", process.env.NODE_ENV || "development"); // 打印出传入的环境变量
   // console.log('Mode:', argv.mode); // 打印出Webpack的mode值
@@ -28,15 +29,11 @@ module.exports = (env, argv) => {
       }),
       new FaviconsWebpackPlugin("public/icon.png"), // svg works too!,
       new CleanWebpackPlugin(),
-      new Dotenv(),
-      // new webpack.EnvironmentPlugin({
-      //   NODE_ENV: process.env.NODE_ENV || "development",
-      //   REACT_APP_REMOTE_URL:
-      //     process.env.REACT_APP_REMOTE_URL ||
-      //     (isDev
-      //       ? "http://localhost:18002"
-      //       : "https://ainotes-api.dadigua.men"),
-      // }),
+      // new Dotenv(),
+      new webpack.EnvironmentPlugin({
+        ...process.env,
+        NODE_ENV: process.env.NODE_ENV || "development",
+      }),
     ],
     module: {
       rules: [
