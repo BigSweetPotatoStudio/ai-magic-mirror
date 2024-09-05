@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon -w src --exec tsx src/server.ts",
-    "dev:all": "npx zx task.mjs --dev:all",
     "start": "npm run dev",
-    "deploy": "npx zx task.mjs --deploy"
+    "deploy": "npx tsx task.mts --deploy"
   },
   "type": "module",
   "author": "",

@@ -1,5 +1,5 @@
 {
-  "name": "ndoejs",
+  "name": "ai-magic-mirror",
   "script": "./js/server.js",
   "cwd": "./",
   "exec_mode": "fork",

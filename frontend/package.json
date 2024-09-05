@@ -75,8 +75,7 @@
   "name": "web",
   "private": true,
   "scripts": {
-    "build": "tsx task.mts && webpack",
-    "build:prod": "tsx task.mts && cross-env NODE_ENV=production webpack",
+    "build": "npx cross-env NODE_ENV=production npx webpack",
     "dev": "npm run start",
     "start": "webpack serve --config webpack.config.js"
   },
