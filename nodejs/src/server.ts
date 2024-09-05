@@ -74,7 +74,7 @@ app
   .use(mount("/assests", file("./assests")))
   .use(api_route.routes())
   .use(api_route.allowedMethods())
-  // .use(mount("/", file("./web/build")))
+  .use(mount("/", file("./web-build")))
   .listen(PORT, "0.0.0.0", () =>
     console.log(`listening on http://localhost:${PORT}...`)
   );

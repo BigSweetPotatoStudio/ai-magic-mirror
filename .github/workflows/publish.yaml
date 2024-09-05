@@ -1,0 +1,37 @@
+name: pull
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./frontend
+      - name: build
+        run: npm run build
+        working-directory: ./frontend
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.DMIT_HOST }}
+          username: ${{ secrets.DMIT_USERNAME }}
+          password: ${{ secrets.DMIT_PASSWORD }}
+          port: ${{ secrets.DMIT_PORT }}
+          source: frontend/build
+          target: root/projects/ai-magic-mirror/nodejs/web-build
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DMIT_HOST }}
+          username: ${{ secrets.DMIT_USERNAME }}
+          password: ${{ secrets.DMIT_PASSWORD }}
+          port: ${{ secrets.DMIT_PORT }}
+          script: |
+            export NODE_ENV=production 
+            cd root/projects/ai-magic-mirror/nodejs
+            npm run deploy
