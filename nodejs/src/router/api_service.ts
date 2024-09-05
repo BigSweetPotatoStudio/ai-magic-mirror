@@ -11,6 +11,7 @@ import { fileURLToPath } from "url";
 import { OpenAiChannel } from "../common/messagechannel.js";
 import { v4 as gen_uuid } from "uuid";
 import "dotenv/config";
+import { fs } from "zx";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -46,17 +47,16 @@ export class ApiService {
     mimetype: string;
     type: 1 | 2;
   }) {
+    let imagePath = path.resolve(__dirname, "../../uploads/", body.filename);
+    if ((await fs.stat(imagePath)).size / 1024 / 1024 > 5) {
+      throw new Error("图片太大，大于5MB");
+    }
     let startText =
       body.type === 1
         ? `你是一个鼓励师，你的功能就是，根据我的文本，赞美人的的相貌。请使用中文回复。`
         : `你是一个中国的脱口秀演员，你的功能就是，根据我的文本，吐槽一下人物的相貌，记得毒舌，刻薄，恶毒，中文梗。请使用中文回复。`;
 
-    const files = [
-      await uploadToGemini(
-        path.resolve(__dirname, "../../uploads/", body.filename),
-        body.mimetype
-      ),
-    ];
+    const files = [await uploadToGemini(imagePath, body.mimetype)];
 
     const chatSession = model.startChat({
       generationConfig,
