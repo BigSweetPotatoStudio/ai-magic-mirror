@@ -1,7 +1,7 @@
 name: pull
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
           username: ${{ secrets.DMIT_USERNAME }}
           password: ${{ secrets.DMIT_PASSWORD }}
           port: ${{ secrets.DMIT_PORT }}
-          source: frontend/build
+          source: frontend/build/*
           target: projects/ai-magic-mirror/nodejs/web-build
           overwrite: true
       - name: executing remote ssh commands using password
