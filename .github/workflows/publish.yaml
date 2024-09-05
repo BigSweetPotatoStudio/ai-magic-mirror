@@ -23,7 +23,8 @@ jobs:
           password: ${{ secrets.DMIT_PASSWORD }}
           port: ${{ secrets.DMIT_PORT }}
           source: frontend/build
-          target: root/projects/ai-magic-mirror/nodejs/web-build
+          target: projects/ai-magic-mirror/nodejs/web-build
+          overwrite: true
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -33,5 +34,5 @@ jobs:
           port: ${{ secrets.DMIT_PORT }}
           script: |
             export NODE_ENV=production 
-            cd root/projects/ai-magic-mirror/nodejs
+            cd projects/ai-magic-mirror/nodejs
             npm run deploy
