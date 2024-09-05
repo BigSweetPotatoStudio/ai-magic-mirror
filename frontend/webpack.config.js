@@ -5,9 +5,14 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-require("dotenv").config();
+const envFile = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : ".env";
+
+require("dotenv").config({
+  path: path.resolve(__dirname, envFile),
+  debug: true,
+});
 // const Dotenv = require("dotenv-webpack");
-console.log(process.env);
+
 module.exports = (env, argv) => {
   console.log("ENV:", process.env.NODE_ENV || "development"); // 打印出传入的环境变量
   // console.log('Mode:', argv.mode); // 打印出Webpack的mode值
@@ -24,7 +29,7 @@ module.exports = (env, argv) => {
       }),
 
       new HtmlWebpackPlugin({
-        title: "video-downloader", // 用于设置生成的HTML文档的标题
+        title: "magic-mirror", // 用于设置生成的HTML文档的标题
         template: "public/index.html", // 模板文件路径
       }),
       new FaviconsWebpackPlugin("public/icon.png"), // svg works too!,
