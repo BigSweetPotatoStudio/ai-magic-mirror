@@ -65,10 +65,7 @@ AI魔镜是一个有趣的Node.js应用，可以通过人工智能为您的照�
 ## 技术栈
 
 - Node.js
-- Express.js
-- TensorFlow.js / ml5.js (用于AI模型)
-- HTML/CSS/JavaScript (前端)
-- EJS (模板引擎，如果使用)
+- REACT tailwind (前端)
 
 ## 贡献
 
